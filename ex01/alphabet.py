@@ -9,7 +9,7 @@ def main():
         kaito = mondai()
         kaitou(kaito)
 
-def mondai():
+def mondai():#問題を表示する関数
     alp = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     mondai = random.sample(alp,10)
     
@@ -21,7 +21,7 @@ def mondai():
     
     return mondai
 
-def kaitou(seikai):
+def kaitou(seikai):#ユーザーの回答の合否判定をする関数
     urans = int(input("欠損文字はいくつあるでしょうか？："))
     if urans == num_kesson:
         print("CORRECT!!")
