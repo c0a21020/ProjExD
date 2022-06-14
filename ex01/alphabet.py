@@ -13,7 +13,7 @@ def mondai():
     alp = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     mondai = random.sample(alp,10)
     
-    print("対象文字：")
+    print("対象文字：") 
     print(mondai)
     print("表示文字：")
     hyouji = random.sample(mondai,8)
