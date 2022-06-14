@@ -4,7 +4,7 @@ Kurikaeshi = 5
 num_taisho = 10
 num_kesson = 2
 
-def main():
+def main():#メイン関数
     for i in range(Kurikaeshi):
         kaito = mondai()
         kaitou(kaito)
