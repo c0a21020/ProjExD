@@ -24,9 +24,9 @@ def mondai():
 def kaitou(seikai):
     urans = int(input("欠損文字はいくつあるでしょうか？："))
     if urans == num_kesson:
-        print("correct")
+        print("CORRECT!!")
     else:
-        print("wrong")
+        print("WRONG...")
 
 if __name__ == "__main__":
     main()
