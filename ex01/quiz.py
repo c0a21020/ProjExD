@@ -1,7 +1,7 @@
-from random import randint
+from random import randint #あはは
 
 def main():
-    urans = shutudai()
+    kaitou = shutudai()
     Kaito(urans)
 
 def shutudai():
@@ -9,9 +9,8 @@ def shutudai():
     ans = [["マスオ","ますお"],["ワカメ","わかめ"],["甥","おい","甥っ子","おいっこ"]]
 
     mondai = randint(0,2)
-    mondaibun = print(f"問題：{que[mondai]}")
-
-    return mondaibun,Kaito()
+    
+    return print(f"問題：{que[mondai]}"),ans[mondai]
     
 def Kaito(urans):
     urans = input("答えるんだ：")
