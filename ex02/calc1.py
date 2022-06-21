@@ -42,18 +42,18 @@ if __name__ == "__main__":
         c+=1
         c1 = c+1
 
-    btn1 = tk.Button(root,
+    eqr_b = tk.Button(root,
                 text="=",
                 font=("Times New Roman", 30),bg="#FFE0F2",fg="#F9AFEC"
                     )   
-    btn1.bind("<1>", click_e)
-    btn1.grid(row=r, column=c, padx=10, pady=10)
+    eqr_b.bind("<1>", click_e)
+    eqr_b.grid(row=r, column=c, padx=10, pady=10)
 
-    btn2 = tk.Button(root,
+    clr_b = tk.Button(root,
                 text="AC",
                 font=("Times New Roman", 25),bg="#DDD3ED",fg="#8384DF"
                     )   
-    btn2.bind("<1>",click_c )
-    btn2.grid(row=r, column=c1, padx=10, pady=10)
+    clr_b.bind("<1>",click_c )
+    clr_b.grid(row=r, column=c1, padx=10, pady=10)
 
     root.mainloop()
