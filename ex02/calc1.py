@@ -26,7 +26,7 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.title("電卓")     #電卓のウィンドウを作った
     
-    root.geometry("300x500")
+    #root.geometry("300x500")
     entry = tk.Entry(root,bg="#EBDECF",fg="#9FC9C7",justify="right", width=12, font=("Times New Roman", 30))
     entry.grid(row=0, column=1, columnspan=4)
 
