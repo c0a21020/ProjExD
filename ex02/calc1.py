@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     r,c = 0,0
     for num in range(9,-1,-1):
-        button = tk.Button(root,text = num ,width = 4,height = 2,font = ("Times New Roman",30))
+        button = tk.Button(root,text = num ,width = 4,height = 2,font = ("Times New Roman",20))
 
         button.bind("<1>",button_click)
 
