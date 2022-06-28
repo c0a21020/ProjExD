@@ -1,4 +1,5 @@
 import random
+size = 80
 
 def make_maze(yoko, tate):
     XP = [ 0, 1, 0, -1]
@@ -28,6 +29,6 @@ def show_maze(canvas, maze_lst):
     color = ["white", "gray"]
     for y in range(len(maze_lst)):
         for x in range(len(maze_lst[y])):
-            canvas.create_rectangle(x*100, y*100, x*100+100, y*100+100, 
+            canvas.create_rectangle(x*size, y*size, x*size+size, y*size+size, 
                                     fill=color[maze_lst[y][x]])
    
