@@ -26,9 +26,10 @@ def make_maze(yoko, tate):
     return maze_lst
 
 def show_maze(canvas, maze_lst):
-    color = ["white", "gray"]
+    color = ["white", "skyblue","pink"]
     for y in range(len(maze_lst)):
         for x in range(len(maze_lst[y])):
             canvas.create_rectangle(x*size, y*size, x*size+size, y*size+size, 
                                     fill=color[maze_lst[y][x]])
-   
+    
+    
