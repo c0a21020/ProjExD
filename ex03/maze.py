@@ -15,7 +15,11 @@ def key_up(event):
 def main_proc(): #リアルタイム処理であるので引数にeventはいらない
     global cx,cy,mx,my
     
-    delta = {"Up":[0,-1],"Down":[0,+1],"Left":[-1,0],"Right":[+1,0],"":[0,0]} #押されているキーkey、値は移動幅リスト「x、y」
+    delta = {"Up":[0,-1],
+            "Down":[0,+1],
+            "Left":[-1,0],
+            "Right":[+1,0],
+            "":[0,0]}#押されているキーkey、値は移動幅リスト「x、y」
     try:
         if maze_bg[my+delta[key][1]][mx+delta[key][0]] == 0:
             my,mx = my+delta[key][1], mx+delta[key][0]
