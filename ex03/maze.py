@@ -2,7 +2,9 @@ import tkinter as tk
 
 if __name__ == "__main__":
     root = tk.Tk()
-    label = tk.Label(root, text="Hello", font=("Times New Roman", 80))
-    label.pack()
-
+    root.title("迷えるこうかとん")
+    
+    canvas = tk.Canvas(root, widtth=1500, height=900, bg="black")   
+    canvas.pack()
+    
     root.mainloop()
