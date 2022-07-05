@@ -17,13 +17,50 @@ def main():
     koukaton_rct = koukaton_sfc.get_rect()
     koukaton_rct.center = 900,400
 
-    bomb_sfc = pg.Surface((20,20))
+    x,y = 20,20
+    '''
+    passtime = pg.time.get_ticks()
+    if passtime % 1000 == 0:
+        x,y = +10, +10
+    '''
+    #bomb1
+    bomb_sfc = pg.Surface((x,y))
     bomb_sfc.set_colorkey((0,0,0))
-    pg.draw.circle(bomb_sfc,(255,0,0),(10,10),10)
+    pg.draw.circle(bomb_sfc,(255,0,0),(10,10),x-10)
+    pg.draw.circle(bomb_sfc,(191,0,0),(10,10),x-12)
+    pg.draw.circle(bomb_sfc,(127,0,0),(10,10),x-14)
+    pg.draw.circle(bomb_sfc,(63,0,0),(10,10),x-16)
     bomb_rct = bomb_sfc.get_rect()
     bomb_rct.centerx = random.randint(0,screen_rct.width)   #スクリーンから出ない範囲でランダム
     bomb_rct.centery = random.randint(0,screen_rct.height)
+
+    #bomb2
+    bomb2_sfc = pg.Surface((x,y))
+    bomb2_sfc.set_colorkey((0,0,0))
+    pg.draw.circle(bomb2_sfc,(255,0,0),(10,10),x-10)
+    pg.draw.circle(bomb2_sfc,(191,0,0),(10,10),x-12)
+    pg.draw.circle(bomb2_sfc,(127,0,0),(10,10),x-14)
+    pg.draw.circle(bomb2_sfc,(63,0,0),(10,10),x-16)
+    bomb2_rct = bomb2_sfc.get_rect()
+    bomb2_rct.centerx = random.randint(0,screen_rct.width)   #スクリーンから出ない範囲でランダム
+    bomb2_rct.centery = random.randint(0,screen_rct.height)
+
+    #bomb3
+    bomb3_sfc = pg.Surface((x,y))
+    bomb3_sfc.set_colorkey((0,0,0))
+    pg.draw.circle(bomb3_sfc,(255,0,0),(10,10),x-10)
+    pg.draw.circle(bomb3_sfc,(191,0,0),(10,10),x-12)
+    pg.draw.circle(bomb3_sfc,(127,0,0),(10,10),x-14)
+    pg.draw.circle(bomb3_sfc,(63,0,0),(10,10),x-16)
+    bomb3_rct = bomb3_sfc.get_rect()
+    bomb3_rct.centerx = random.randint(0,screen_rct.width)   #スクリーンから出ない範囲でランダム
+    bomb3_rct.centery = random.randint(0,screen_rct.height)
+
+    #bomb1,2,3 がそれぞれのスピード、向きで動くように変化量を変更
     vx, vy = +1, +1
+    vx2, vy2 = -0.8, +1.3
+    vx3, vy3 = +1.4, -1.1
+    
 
     
 
@@ -56,17 +93,43 @@ def main():
                 koukaton_rct.centerx -= 1      #x ... +1
         screen_sfc.blit(koukaton_sfc,koukaton_rct)
         
+        passtime = pg.time.get_ticks()
+        if passtime % 100 == 0:
+            vx,vy,vx2,vy2,vx3,vy3 = +2, +2, -2, +2, +2, -2
+            bomb_sfc = pg.transform.rotozoom(bomb_sfc,0,1.2)
+        
         bomb_rct.move_ip(vx,vy)
+        bomb2_rct.move_ip(vx2,vy2)
+        bomb3_rct.move_ip(vx3,vy3)
         
         screen_sfc.blit(bomb_sfc,bomb_rct)
+        screen_sfc.blit(bomb2_sfc,bomb2_rct)
+        screen_sfc.blit(bomb3_sfc,bomb3_rct)
         
         yoko,tate = check_bound(bomb_rct,screen_rct)
         vx *= yoko
         vy *= tate
 
+        yoko,tate = check_bound(bomb2_rct,screen_rct)
+        vx2 *= yoko
+        vy2 *= tate
+
+        yoko,tate = check_bound(bomb3_rct,screen_rct)
+        vx3 *= yoko
+        vy3 *= tate
+
+        
+        
+
         if koukaton_rct.colliderect(bomb_rct):
+            print("爆弾がこうかとんに当たってしまった...")
             return
-        #if bomb_rct.
+        if koukaton_rct.colliderect(bomb2_rct):
+            print("爆弾がこうかとんに当たってしまった...")
+            return
+        if koukaton_rct.colliderect(bomb3_rct):
+            print("爆弾がこうかとんに当たってしまった...")
+            return
 
         pg.display.update()
         clock.tick(1000)
