@@ -6,7 +6,7 @@ def main():
     clock = pg.time.Clock()
     
     pg.display.set_caption("逃げろ！こうかとん")
-    screen_sfc = pg.display.set_mode((1600,900))
+    screen_sfc = pg.display.set_mode((1200,600))
     screen_rct = screen_sfc.get_rect()
     bgimg_sfc = pg.image.load("fig/pg_bg.jpg")
     bgimg_rct = bgimg_sfc.get_rect()
@@ -36,7 +36,7 @@ def main():
                 return
         
         key_states = pg.key.get_pressed()
-        if key_states[pg.K_UP] == True:    
+        if key_states[pg.K_UP] == True:  
             koukaton_rct.centery -= 1      #y ... -1
         if key_states[pg.K_DOWN] == True:
             koukaton_rct.centery += 1      #y ... +1
@@ -45,13 +45,39 @@ def main():
         if key_states[pg.K_RIGHT] == True: 
             koukaton_rct.centerx += 1      #x ... +1
 
-        bomb_rct.move_ip(vx,vy)
-        screen_sfc.blit(bomb_sfc,bomb_rct)
+        if check_bound(koukaton_rct,screen_rct) != (1,1):
+            if key_states[pg.K_UP] == True:
+                koukaton_rct.centery += 1      #y ... -1
+            if key_states[pg.K_DOWN] == True:
+                koukaton_rct.centery -= 1      #y ... +1
+            if key_states[pg.K_LEFT] == True:
+                koukaton_rct.centerx += 1      #x ... -1
+            if key_states[pg.K_RIGHT] == True: 
+                koukaton_rct.centerx -= 1      #x ... +1
         screen_sfc.blit(koukaton_sfc,koukaton_rct)
+        
+        bomb_rct.move_ip(vx,vy)
+        
+        screen_sfc.blit(bomb_sfc,bomb_rct)
+        
+        yoko,tate = check_bound(bomb_rct,screen_rct)
+        vx *= yoko
+        vy *= tate
 
         pg.display.update()
         clock.tick(1000)
 
+def check_bound(rct, scr_rct):
+    '''
+    [1] rct: こうかとんor爆弾 の　Rect
+    [2] scr_rct: スクリーンのRect
+    '''
+    yoko,tate = +1,+1
+    if rct.left < scr_rct.left or scr_rct.right < rct.right:
+        yoko = -1
+    if rct.top < scr_rct.top or scr_rct.bottom < rct.bottom:
+        tate = -1
+    return yoko,tate
 
 if __name__ == "__main__":
     pg.init()
