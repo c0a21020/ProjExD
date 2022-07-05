@@ -18,11 +18,6 @@ def main():
     koukaton_rct.center = 900,400
 
     x,y = 20,20
-    '''
-    passtime = pg.time.get_ticks()
-    if passtime % 1000 == 0:
-        x,y = +10, +10
-    '''
     #bomb1
     bomb_sfc = pg.Surface((x,y))
     bomb_sfc.set_colorkey((0,0,0))
@@ -93,10 +88,14 @@ def main():
                 koukaton_rct.centerx -= 1      #x ... +1
         screen_sfc.blit(koukaton_sfc,koukaton_rct)
         
+        #pg.init()が呼ばれてからの経過時間をpasstimeとし、
+        #passtimeが0.1秒ずつ増加する時の処理
         passtime = pg.time.get_ticks()
         if passtime % 100 == 0:
-            vx,vy,vx2,vy2,vx3,vy3 = +2, +2, -2, +2, +2, -2
-            bomb_sfc = pg.transform.rotozoom(bomb_sfc,0,1.2)
+            vx,vy,vx2,vy2,vx3,vy3 = +2, +2, -2, +2, +2, -2     #３つの爆弾の増加量を０.1秒ずつ増やすことで、徐々に速度を速くしている
+            bomb_sfc = pg.transform.rotozoom(bomb_sfc,0,1.2)   #３つの爆弾の比率を1.2倍にすることで、0.1秒ずつ爆弾が大きくなる
+            bomb2_sfc = pg.transform.rotozoom(bomb2_sfc,0,1.2)
+            bomb3_sfc = pg.transform.rotozoom(bomb3_sfc,0,1.2)
         
         bomb_rct.move_ip(vx,vy)
         bomb2_rct.move_ip(vx2,vy2)
@@ -119,8 +118,6 @@ def main():
         vy3 *= tate
 
         
-        
-
         if koukaton_rct.colliderect(bomb_rct):
             print("爆弾がこうかとんに当たってしまった...")
             return
@@ -135,6 +132,7 @@ def main():
         clock.tick(1000)
 
 def check_bound(rct, scr_rct):
+    
     '''
     [1] rct: こうかとんor爆弾 の　Rect
     [2] scr_rct: スクリーンのRect
