@@ -6,7 +6,7 @@ def main():
     clock = pg.time.Clock()
     
     pg.display.set_caption("逃げろ！こうかとん")
-    screen_sfc = pg.display.set_mode((1200,600))
+    screen_sfc = pg.display.set_mode((1430,765))
     screen_rct = screen_sfc.get_rect()
     bgimg_sfc = pg.image.load("fig/pg_bg.jpg")
     bgimg_rct = bgimg_sfc.get_rect()
@@ -63,6 +63,10 @@ def main():
         yoko,tate = check_bound(bomb_rct,screen_rct)
         vx *= yoko
         vy *= tate
+
+        if koukaton_rct.colliderect(bomb_rct):
+            return
+        #if bomb_rct.
 
         pg.display.update()
         clock.tick(1000)
