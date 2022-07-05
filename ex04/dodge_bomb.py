@@ -1,5 +1,6 @@
 import pygame as pg
 import sys
+import random
 
 def main():
     clock = pg.time.Clock()
@@ -15,6 +16,14 @@ def main():
     koukaton_sfc = pg.transform.rotozoom(koukaton_sfc,0,2.0)
     koukaton_rct = koukaton_sfc.get_rect()
     koukaton_rct.center = 900,400
+
+    bomb_sfc = pg.Surface((20,20))
+    bomb_sfc.set_colorkey((0,0,0))
+    pg.draw.circle(bomb_sfc,(255,0,0),(10,10),10)
+    bomb_rct = bomb_sfc.get_rect()
+    bomb_rct.centerx = random.randint(0,screen_rct.width)   #スクリーンから出ない範囲でランダム
+    bomb_rct.centery = random.randint(0,screen_rct.height)
+
     
 
     while True:
@@ -27,13 +36,13 @@ def main():
         
         key_states = pg.key.get_pressed()
         if key_states[pg.K_UP] == True:    
-            koukaton_rct.centery -= 1      #y...-1
+            koukaton_rct.centery -= 1      #y ... -1
         if key_states[pg.K_DOWN] == True:
-            koukaton_rct.centery += 1      #y...+1
+            koukaton_rct.centery += 1      #y ... +1
         if key_states[pg.K_LEFT] == True:
-            koukaton_rct.centerx -= 1      #x...-1
+            koukaton_rct.centerx -= 1      #x ... -1
         if key_states[pg.K_RIGHT] == True: 
-            koukaton_rct.centerx += 1      #x...+1
+            koukaton_rct.centerx += 1      #x ... +1
 
         screen_sfc.blit(koukaton_sfc,koukaton_rct)
 
