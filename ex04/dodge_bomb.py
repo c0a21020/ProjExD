@@ -23,6 +23,7 @@ def main():
     bomb_rct = bomb_sfc.get_rect()
     bomb_rct.centerx = random.randint(0,screen_rct.width)   #スクリーンから出ない範囲でランダム
     bomb_rct.centery = random.randint(0,screen_rct.height)
+    vx, vy = +1, +1
 
     
 
@@ -44,6 +45,8 @@ def main():
         if key_states[pg.K_RIGHT] == True: 
             koukaton_rct.centerx += 1      #x ... +1
 
+        bomb_rct.move_ip(vx,vy)
+        screen_sfc.blit(bomb_sfc,bomb_rct)
         screen_sfc.blit(koukaton_sfc,koukaton_rct)
 
         pg.display.update()
